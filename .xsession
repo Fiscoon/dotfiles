@@ -1,3 +1,4 @@
 picom --config .local/picom/picom.conf &
-xwallpaper --center .local/pictures/wallpaper.jpg &
+xwallpaper --stretch .local/pictures/wallpaper.jpg &
+xrandr -s 1024x768 &
 dwm
