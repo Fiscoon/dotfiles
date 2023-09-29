@@ -1,0 +1,4 @@
+#!/bin/sh
+
+batt_perc=$(apm -l)
+echo "${batt_perc}%"
