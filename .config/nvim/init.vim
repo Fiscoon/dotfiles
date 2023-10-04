@@ -77,3 +77,14 @@ require('orgmode').setup({
 END
 
 colorscheme catppuccin
+
+nnoremap 1 :lua require"bufferline".go_to(1)<CR>
+nnoremap 2 :lua require"bufferline".go_to(2)<CR>
+nnoremap 3 :lua require"bufferline".go_to(3)<CR>
+nnoremap 4 :lua require"bufferline".go_to(4)<CR>
+nnoremap 5 :lua require"bufferline".go_to(5)<CR>
+nnoremap 6 :lua require"bufferline".go_to(6)<CR>
+nnoremap 7 :lua require"bufferline".go_to(7)<CR>
+nnoremap 8 :lua require"bufferline".go_to(8)<CR>
+nnoremap 9 :lua require"bufferline".go_to(9)<CR>
+nnoremap <silent> gd :BufferLinePickClose<CR>
