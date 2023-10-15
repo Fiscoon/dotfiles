@@ -4,3 +4,4 @@
 
 PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:$HOME/.local/bin
 export PATH HOME TERM
+export ENV=$HOME/.kshrc
