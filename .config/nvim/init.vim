@@ -12,7 +12,9 @@ command! Wq  wq
 command! WQ  wq
 
 call plug#begin()
-Plug 'preservim/nerdtree'
+"Plug 'preservim/nerdtree'
+Plug 'nvim-tree/nvim-tree.lua'
+
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
@@ -29,29 +31,7 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 call plug#end()
 
 set number
-
-" open NERDTree automatically
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | wincmd p
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
-let g:NERDTreeGitStatusWithFlags = 1
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:NERDTreeGitStatusNodeColorization = 1
-let g:NERDTreeColorMapCustom = {
-    \ "Staged"    : "#0ee375",  
-    \ "Modified"  : "#d9bf91",  
-    \ "Renamed"   : "#51C9FC",  
-    \ "Untracked" : "#FCE77C",  
-    \ "Unmerged"  : "#FC51E6",  
-    \ "Dirty"     : "#FFBD61",  
-    \ "Clean"     : "#87939A",   
-    \ "Ignored"   : "#808080"   
-    \ }                         
-
-let g:NERDTreeIgnore = ['^node_modules$']
+autocmd VimEnter * NvimTreeOpen 
 
 lua << END
 require("bufferline").setup{}
@@ -71,8 +51,26 @@ require('nvim-treesitter.configs').setup {
 require('gitsigns').setup()
 require("ibl").setup()
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>f', builtin.find_files, {})
+vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
+
+-- empty setup using defaults
+require("nvim-tree").setup()
+
+-- OR setup with some options
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    width = 30,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+
 END
 
 let g:catppuccin_flavour = "latte"
