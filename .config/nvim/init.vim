@@ -1,26 +1,41 @@
+" Map leader key
+let mapleader = ","
+
+" Faster up/down movement
+map <C-j> 10j
+map <C-k> 10k
+
+" Useful aliases
+command! Q  q
+command! W  w
+command! Wq  wq
+command! WQ  wq
+
 call plug#begin()
 Plug 'preservim/nerdtree'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim'
-" I also can use fzf here. Look into it.
-" Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
 " Plug 'ryanoasis/vim-devicons' Icons without colours
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'akinsho/toggleterm.nvim', { 'tag' : '*' }
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 call plug#end()
 
 set number
 
 " open NERDTree automatically
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree
+autocmd VimEnter * NERDTree | wincmd p
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 let g:NERDTreeGitStatusWithFlags = 1
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
@@ -39,9 +54,9 @@ let g:NERDTreeColorMapCustom = {
 let g:NERDTreeIgnore = ['^node_modules$']
 
 lua << END
-require("bufferline").setup()
+require("bufferline").setup{}
 require('lualine').setup()
--- require('telescope').setup()
+require('telescope').setup()
 require("toggleterm").setup{
 	open_mapping = [[<c-t>]],
 	persist_size = false,
@@ -55,8 +70,10 @@ require('nvim-treesitter.configs').setup {
 }
 require('gitsigns').setup()
 require("ibl").setup()
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 END
-
 
 let g:catppuccin_flavour = "latte"
 colorscheme catppuccin
