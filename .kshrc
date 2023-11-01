@@ -1,2 +1,3 @@
 alias us='setxkbmap us'
-alias es='setxkbmap es'
+alias la='setxkbmap latam'
+alias bm='nvim .local/share/bookmarks.txt'
