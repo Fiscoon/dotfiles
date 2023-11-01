@@ -86,4 +86,6 @@ nnoremap 7 :lua require"bufferline".go_to(7)<CR>
 nnoremap 8 :lua require"bufferline".go_to(8)<CR>
 nnoremap 9 :lua require"bufferline".go_to(9)<CR>
 nnoremap <silent> gd :BufferLinePickClose<CR>
+nnoremap k gk
+nnoremap j gj
 
