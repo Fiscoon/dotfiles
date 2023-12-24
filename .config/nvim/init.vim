@@ -1,25 +1,15 @@
 " Map leader key
 let mapleader = ","
 
-" Faster up/down movement
-map <C-j> 10j
-map <C-k> 10k
-
 " Useful aliases
-command! Q  q
-command! W  w
-command! Wq  wq
-command! WQ  wq
+command! Q  wqa
 
 call plug#begin()
-"Plug 'preservim/nerdtree'
 Plug 'nvim-tree/nvim-tree.lua'
-
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim'
-" Plug 'ryanoasis/vim-devicons' Icons without colours
+Plug 'vimwiki/vimwiki'
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'akinsho/toggleterm.nvim', { 'tag' : '*' }
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
@@ -54,20 +44,16 @@ local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>f', builtin.find_files, {})
 vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
 
--- empty setup using defaults
-require("nvim-tree").setup()
-
--- OR setup with some options
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
-    width = 30,
+    width = 35,
   },
   renderer = {
     group_empty = true,
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
   },
 })
 
