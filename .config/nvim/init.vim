@@ -28,6 +28,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 set number
@@ -89,3 +90,7 @@ nnoremap <silent> gd :BufferLinePickClose<CR>
 nnoremap k gk
 nnoremap j gj
 
+" Vimwiki requirements
+set nocompatible
+filetype plugin on
+syntax on
