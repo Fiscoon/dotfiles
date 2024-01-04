@@ -1,12 +1,8 @@
 local opt = vim.opt
-local colorscheme = "catppuccin"
 
 -- General
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-vim.api.nvim_create_autocmd("VimEnter", {
-    command = "NvimTreeOpen",
-})
 vim.cmd.colorscheme "catppuccin-latte"
 
 -- UI

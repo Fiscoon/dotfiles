@@ -35,19 +35,15 @@ map("n", "gd", ":BufferLinePickClose<cr>", { desc = "Close selected buffer" })
 
 -- Telescope
 map("n", "<leader>ff", function()
-    require("core.telescopePickers").prettyFilesPicker({ picker = "find_files" })
+    require("telescope_pickers").prettyFilesPicker({ picker = "find_files" })
 end, { desc = "Fuzzy find files" })
--- map("n", "<leader>fr", ":Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-map("n", "<leader>fr", function()
-    require("core.telescopePickers").prettyFilesPicker({ picker = "oldfiles" })
-end, { desc = "Fuzzy find recent files" })
 -- map("n", "<leader>fs", ":Telescope live_grep<cr>", { desc = "Find string in cwd" })
-map("n", "<leader>fs", function()
-    require("core.telescopePickers").prettyGrepPicker({ picker = "live_grep" })
+map("n", "<leader>fg", function()
+    require("telescope_pickers").prettyGrepPicker({ picker = "live_grep" })
 end, { desc = "Find string in cwd" })
 -- map("n", "<leader>fc", ":Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
 map("n", "<leader>fc", function()
-    require("core.telescopePickers").prettyGrepPicker({ picker = "grep_string" })
+    require("telescope_pickers").prettyGrepPicker({ picker = "grep_string" })
 end, { desc = "Find string under cursor in cwd" })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
