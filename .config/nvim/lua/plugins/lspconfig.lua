@@ -22,7 +22,9 @@ return {
             },
         })
 
-        -- Templ
+        require'lspconfig'.clangd.setup({})
+
+        --[[ Templ
         require("lspconfig").templ.setup({})
         vim.filetype.add({
             extension = {
@@ -88,6 +90,7 @@ return {
                 return true
             end,
         })
+        --]]
 
         -- Ltex LS (LanguageTool)
         local ltex_cmd = vim.fn.stdpath("data") .. "/mason/packages/ltex-ls/ltex-ls-16.0.0/bin/ltex-ls"

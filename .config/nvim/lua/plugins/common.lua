@@ -11,15 +11,18 @@ return{
             require("nvim-tree").setup({
                 sort_by = "case_sensitive",
                 view = {
-                  width = 30,
+                    width = 30,
                 },
                 renderer = {
-                  group_empty = true,
+                    group_empty = true,
+                    icons = {
+                        padding = " ",
+	                },
                 },
                 filters = {
                   dotfiles = false,
                 },
-              })
+            })
         end,
     },
     { 
@@ -28,17 +31,31 @@ return{
             require("lualine").setup()
         end,
     },
-    'nvim-tree/nvim-web-devicons',
+    --'nvim-tree/nvim-web-devicons',
     'nvim-lua/plenary.nvim',
     {
         'akinsho/bufferline.nvim', 
         version = '*', 
-        dependencies = 'nvim-tree/nvim-web-devicons',
+        --dependencies = 'nvim-tree/nvim-web-devicons',
         init = function()
             require("bufferline").setup()
         end,
     },
-    {'akinsho/toggleterm.nvim', version = '*', config = true},
+    {
+        'akinsho/toggleterm.nvim', 
+        version = '*', 
+        opts = {
+            open_mapping = [[<c-t>]],
+        },
+        init = function()
+            require("toggleterm").setup()
+        end,
+    },  
+    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = {
+        terminal_colors = false,
+    },
+    },
+    --[[
     { 
         'catppuccin/nvim', 
         name = 'catppuccin', 
@@ -51,9 +68,17 @@ return{
                 	nvimtree = true,
                     treesitter = true,
                 },
+                color_overrides = {
+                    latte = {
+                        base = "#f8eddb",
+                        mantle = "#edd0a7",
+                        crust = "#2c2916",
+                    },
+                }, 
             })
         end,
     },
+    --]]
     { 
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
@@ -116,7 +141,7 @@ return{
         init = function()
             vim.g.vimwiki_list = {
                 {
-                    path = '~/docs/vimwiki',
+                    path = '~/notes',
                     syntax = 'default',
                     ext = '.wiki',
                 },
