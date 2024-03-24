@@ -1,5 +1,2 @@
-. ./.profile
-. ./.kshrc
-
-xwallpaper --stretch .local/pictures/wallpaper.jpg &
+xsetroot -solid "#edd0a7"
 exec dwm
